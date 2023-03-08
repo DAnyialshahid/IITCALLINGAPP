@@ -1,7 +1,8 @@
 {
   "expo": {
     "name": "iit-calling-system",
-    "slug": "snack-18f4e103-5d3c-42c0-bc50-9d1e935a3632",
+
+    "slug": "snack-f9230407-cf15-4eb8-a414-dc7792502fc2",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -21,13 +22,19 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
+      "package": "com.iit.itworld",
+            "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b253e54d-0f50-4e2c-8572-df9521c3b641"
+      }
     }
   }
 }

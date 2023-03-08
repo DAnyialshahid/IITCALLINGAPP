@@ -1,7 +1,7 @@
 
 
 import * as React from 'react';
-import { Text, View, StyleSheet,Linking } from 'react-native';
+import { Text,TextInput, View, StyleSheet,Linking } from 'react-native';
 
 // import axios from 'axios';
 import Constants from 'expo-constants';
@@ -15,6 +15,7 @@ import { Card } from 'react-native-paper';
 export default function App() {
 
 const [count,setCount] =useState(0);
+const [username,setUsername] =useState('tooba');
  const onPressMobileNumberClick = (number) => {
 
 //  Linking.openURL("tel:+923112699107");
@@ -24,7 +25,9 @@ const [count,setCount] =useState(0);
  function getUpdate(){
 setCount(Math.random()*9999999999);
  
-      fetch('http://192.168.1.117:8000/mobile_app/tooba')
+ var url='http://192.168.1.222:8000/mobile_app/'+username;
+ console.log(url);
+      fetch(url)
         .then(response => response.json())
         .then(json => {
               // console.log( json);
@@ -59,12 +62,12 @@ setCount(Math.random()*9999999999);
                 });
                 console.log('data',tasks);
               }
-          setTimeout(getUpdate,1000)
+          setTimeout(getUpdate,200)
        
         })
         .catch(error => {
           console.error(error);
-                 setTimeout(getUpdate,1000)
+                 setTimeout(getUpdate,200)
         });
 
 
@@ -72,16 +75,7 @@ setCount(Math.random()*9999999999);
   useEffect(()=>{
     getUpdate();
 
-      // setInterval(()=>{
    
-
-    
-
-      //     // axios.get('http://mywebsite.com/mobile_app/tooba').then((res)=>{
-      //     //   console.log(res.data)  
-      //     // });
-
-      // },10000);
 
    
  },[])
@@ -89,12 +83,18 @@ setCount(Math.random()*9999999999);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.paragraph}>
- {count}
-      </Text>
-      <Card      onPress={() => { onPressMobileNumberClick() }} >
-        <AssetExample />
-      </Card>
+ 
+          <TextInput style = {styles.input}
+               underlineColorAndroid = "transparent"
+               placeholder = "Username Here"
+               placeholderTextColor = "black"
+               autoCapitalize = "none"
+               onChangeText={text => setUsername(text)}
+                /> 
+ <Text style={styles.paragraph}>{count}</Text>
+    <AssetExample />
+ 
+ 
     </View>
   );
 }
@@ -113,4 +113,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
+  input: {
+      margin: 15,
+      height: 40,
+      borderColor: '#7a42f4',
+      borderWidth: 1
+   }
 });
